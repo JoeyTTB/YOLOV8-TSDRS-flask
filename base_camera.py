@@ -299,7 +299,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lineEdit.clear()
 
     def export_images(self, output_filename):
-        self.OutputDir = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/detected_storage/", output_filename)
+        self.OutputDir = os.path.join("./detected_storage/", output_filename)
         try:
             cv2.imwrite(self.OutputDir, self.img_showimg)
             print("图片导出成功\n")
@@ -307,7 +307,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("图片导出失败: ", e)
 
     def export_videos(self, output_filename):
-        self.OutputDirs = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/detected_storage/" + output_filename)
+        self.OutputDirs = os.path.join("./detected_storage/" + output_filename)
         try:
             shutil.copy(str(ROOT) + '/prediction.mp4', self.OutputDirs)
             os.remove(str(ROOT) + '/prediction.mp4')
@@ -527,8 +527,8 @@ class ServApi:
             print("文件接收失败\n详细报错: " + e)
         print("file name: " + file.filename + "\n")
         if file:
-            file_path = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/storage/", file_name)
-            dec_save_path = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/detected_storage", output_filename)
+            file_path = os.path.join("./storage/", file_name)
+            dec_save_path = os.path.join("./detected_storage", output_filename)
             print("保存路径: " + file_path + "\n")
             file.save(file_path)
             window.open_image(file_path)
@@ -564,8 +564,8 @@ class ServApi:
             print("文件接收失败")
             print(e)
         if file:
-            file_path = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/storage/", file_name)
-            dec_save_path = os.path.join("D:/Desktop/my_documents/大创资料/大创/代码/detected_storage/", output_filename)
+            file_path = os.path.join("./storage/", file_name)
+            dec_save_path = os.path.join("./detected_storage/", output_filename)
             print("保存路径: " + file_path + "\n")
             file.save(file_path)
             window.open_video(file_path)
